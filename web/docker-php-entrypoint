@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+FLY_SPRAY=/var/www/html/flyspray/
+
+chmod 777  ${FLY_SPRAY}/avatars ${FLY_SPRAY}/cache ${FLY_SPRAY}/attachments
+
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- apache2-foreground "$@"
+fi
+
+exec "$@"
