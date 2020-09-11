@@ -4,6 +4,7 @@ set -e
 FLY_SPRAY=/var/www/html/flyspray/
 
 chmod 777  ${FLY_SPRAY}/avatars ${FLY_SPRAY}/cache ${FLY_SPRAY}/attachments
+chmod 777  ${FLY_SPRAY}
 
 
 # first arg is `-f` or `--some-option`

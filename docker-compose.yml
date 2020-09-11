@@ -2,9 +2,8 @@ version: "3.3"
 
 services:
     flyspray_db:
-        image: mysql:latest
+        image: mariadb
         container_name: flyspray_db
-        command: --default-authentication-plugin=mysql_native_password
         restart: always
         volumes:
             - flyspray_db:/var/lib/mysql
@@ -19,7 +18,9 @@ services:
          - "8080:80"
         restart: always
         volumes:
-         - flyspray_data:/var/www/html/
+         - flyspray_fly:/var/www/html/
+         - flyspray_attachments:/var/www/html/flyspray/attachments   
+         - flyspray_avatar:/var/www/html/flyspray/avatars
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: flyspray_phpmyadmin
@@ -33,4 +34,6 @@ services:
             - flyspray_db
 volumes:
      flyspray_db:
-     flyspray_data:
+     flyspray_fly:
+     flyspray_avatar:
+     flyspray_attachments:
