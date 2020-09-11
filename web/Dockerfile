@@ -7,6 +7,11 @@ RUN docker-php-ext-install mysqli exif pdo gd zip pdo_mysql mysqli
 #RUN docker-php-ext-enable mysqli
 
 
+
+RUN echo "<VirtualHost *:80> \n DocumentRoot /var/www/html/flyspray \n </VirtualHost>" >  /etc/apache2/sites-available/000-default.conf
+    
+    
+
 #RUN curl -s -L https://github.com/Flyspray/flyspray/archive/master.tar.gz  -O
 #RUN tar -xf master.tar.gz -C /var/www/html/ && \
 #  mv /var/www/html/flyspray-master /var/www/html/flyspray
