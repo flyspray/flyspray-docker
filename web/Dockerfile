@@ -4,6 +4,7 @@ RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install -y libpng-dev nano git
 RUN apt-get install -y zlib1g-dev zip libzip-dev libzip4
 RUN docker-php-ext-install mysqli exif pdo gd zip pdo_mysql mysqli 
+RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr
 #RUN docker-php-ext-enable mysqli
 
 
