@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+    flyspray_db:
+        image: mariadb
+        container_name: flyspray_db
+        restart: always
+        volumes:
+            - flyspray_db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "heslo"
+    flyspray_apache:
+        container_name: flyspray_apache
+        build: web/
+        links:
+         - flyspray_db:db
+        ports:
+         - "8081:80"
+        restart: always
+        volumes:
+         - flyspray_fly:/var/www/html/
+         - flyspray_attachments:/var/www/html/flyspray/attachments   
+         - flyspray_avatar:/var/www/html/flyspray/avatars
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: flyspray_phpmyadmin
+        ports:
+            - 8082:80
+        links: 
+            - flyspray_db:db
+        environment:
+            MYSQL_ROOT_PASSWORD: "heslo"
+        depends_on:
+            - flyspray_db
+volumes:
+     flyspray_db:
+     flyspray_fly:
+     flyspray_avatar:
+     flyspray_attachments:
